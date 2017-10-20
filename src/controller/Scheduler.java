@@ -1,33 +1,37 @@
 package controller;
 
-import java.time.Duration;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Scheduler {
 
 	List<ScheduledTask> scheduledTaskList = new ArrayList<>();
 
-	public static void main(String[] args) {}
-
 	Scheduler(){
 
-		scheduleTask(5, 16, 1, 10, 1);
-
+		scheduleTask(Calendar.FRIDAY, 21, 28, 5000, 1);
+		String s = null;
+		try {
+			s = new ObjectMapper().writeValueAsString(scheduledTaskList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		System.out.println("s = " + s);
 	}
 
-	private void scheduleTask(int minute, int hour, int weekDay, int duration, int pin) {
+	private void scheduleTask(int weekDay, int hour, int minute, int duration, int pin) {//podaje w parametrze date, czas i pin
 		Calendar startTime = Calendar.getInstance();
-		startTime.set(Calendar.HOUR, hour);         // podaj godzine
+		startTime.set(Calendar.HOUR_OF_DAY, hour);         // podaj godzine
 		startTime.set(Calendar.MINUTE, minute);        // podaj minute
 		startTime.set(Calendar.DAY_OF_WEEK, weekDay);   // niedziela = 1, sobota = 7
 
-		Task task = new Task(pin);
+		Task task = new Task(pin, duration);		//pin
 
-		boolean isActive = true;
+		boolean isActive = true;		// flaga aktywności
 		ScheduledTask scheduledTask = new ScheduledTask(startTime, duration, task, isActive);
 
 		scheduledTaskList.add(scheduledTask);

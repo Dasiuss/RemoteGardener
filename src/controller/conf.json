@@ -1,0 +1,12 @@
+[
+  {
+    "startTime": 1508527709055,
+    "duration": 5000,
+    "isActive": true,
+    "isRunning": false,
+    "task": {
+      "pin": 1,
+      "duration": 5000
+    }
+  }
+]

@@ -1,0 +1,47 @@
+<html ng-app="ogrodnik">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+</head>
+<body>
+
+
+<div>
+
+    <div class="sekcja" ng-controller="kontrolSekcji as sekcja">
+        <div class="desc">{{sekcja.id}}</div>
+
+        <div class="data">
+
+            <label>Start
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.h" ng-change="sekcja.validuj()"></input>:
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.m" ng-change="sekcja.validuj()"></input>
+            </label>
+            <label>
+                Czas
+                <input type="text" maxlength="3" size="2" ng-model="sekcja.rt">
+                </input>
+            </label>
+
+            <span>Dzien
+                <input type="checkbox"
+                       ng-repeat="day in sekcja.days track by $index"
+                       ng-model="day"
+
+                ></input>
+
+            </span>
+        </div>
+        <button class="guzik"
+                ng-class="sekcja.getStan()"
+                ng-bind="sekcja.stanNazwa()"
+                ng-click="sekcja.zmianaStanu()"> Zmiana Stanu </button>
+        <button class="guzik" ng-click="sekcja.zatwierdz()"> Zastosuj</button>
+    </div>
+
+</div>
+</body>
+<script src="index.js"></script>
+</html>

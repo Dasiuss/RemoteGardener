@@ -1,0 +1,48 @@
+body {
+  background-image: url(" http://weknowyourdreams.com/images/garden/garden-11.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #1B372F;
+}
+
+.sekcja{
+ border: 3px black solid;
+  background-color: #0A372A;
+  width: 300px;
+  box-shadow: 10px 10px 5px #020F0C;
+  margin:50px;
+}
+
+.desc{
+  border: 2px black solid;
+    width: 80%;
+  margin: 0 auto;
+}
+
+label{
+  display: block;
+ }
+
+.guzik{
+  border-top: 3px black solid;
+  width:100%;
+  text-align: center;
+  background-color:Green;
+  font-weight:bold;
+}
+
+input{
+  margin: 5px;
+}
+
+.data{
+  padding: 0 20px;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}

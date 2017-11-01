@@ -1,9 +1,4 @@
-body {
-  background-image: url(" http://weknowyourdreams.com/images/garden/garden-11.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #1B372F;
-}
+
 
 .sekcja{
  border: 3px black solid;
@@ -17,12 +12,15 @@ body {
     border: 2px black solid;
     width: 80%;
     background-color: #1B5746;
-    margin: -10 -15;
+    font-size: 150%;
+    position:relative;
+     top:-10;
+     left:-15;
     font-weight:bold;
 }
 
-label{
-  display: block;
+.data label{
+  display:block;
  }
 
 .guzik{
@@ -31,6 +29,7 @@ label{
   text-align: center;
   background-color:Green;
   font-weight:bold;
+  font-size:80%;
 }
 
 input{
@@ -51,4 +50,34 @@ input{
 
 .blue{
     background-color: blue;
+}
+
+.daycheckbox{
+    margin-right: 4%;
+
+}
+.nav{
+    height: 41px;
+}
+.nav-item{
+    cursor:pointer;
+}
+
+.content{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #1B372F;
+  width: 100%;
+  display: inline-block;
+  height:calc(100% - 41px)
+}
+
+.nawadnianie{
+  background-image: url("images/garden.jpg");
+}
+.oswietlenie{
+  background-image: url("images/light.jpg");
+}
+.fontanna{
+  background-image: url("images/fountain.jpg");
 }

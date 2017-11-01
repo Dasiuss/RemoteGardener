@@ -2,20 +2,94 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/index.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="tabChangeController as tab">
 
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link"
+           ng-click="tab.showOnly('nawadnianie')"
+           ng-class="tab.getTabActive('nawadnianie')">Nawadnianie</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           ng-click="tab.showOnly('oswietlenie')"
+           ng-class="tab.getTabActive('oswietlenie')"
+        >Oswietlenie</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link"
+           ng-click="tab.showOnly('fontanna')"
+           ng-class="tab.getTabActive('fontanna')"
+        >Fontanna</a>
+    </li>
+</ul>
 
-<div>
+<div class="nawadnianie content" ng-show="tab.open=='nawadnianie'">
+
+    <div class="sekcja" ng-controller="kontrolSekcji as sekcja">
+        <button class="desc"
+                ng-click="sekcja.hide()"
+                data-html="true"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="<B>Pokaż / ukryj szczegóły.</B>">{{sekcja.id}}</button>
+
+        <div class="data" ng-show="sekcja.shown">
+             <label ng-show="sekcja.shown">Start
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.h" ng-change="sekcja.validuj()"></input>:
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.m" ng-change="sekcja.validuj()"></input>
+            </label>
+
+            <label ng-show="sekcja.shown">
+                Czas
+                <input type="text" maxlength="3" size="2" ng-model="sekcja.rt">
+                </input>
+            </label>
+
+            <span ng-show="sekcja.shown">Dzien
+                <input type="checkbox"
+                       class="daycheckbox"
+                       ng-repeat="day in sekcja.days track by $index"
+                       ng-model="day"
+                ></input>
+
+            </span>
+        </div>
+        <button class="guzik"
+                ng-class="sekcja.getStan()"
+                ng-bind="sekcja.stanNazwa()"
+                ng-click="sekcja.zmianaStanu()"
+                data-html="true"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="<B>Wystartuj / zatrzymaj ręcznie.</B>"
+        > Zmiana Stanu </button>
+
+        <button class="guzik"
+                ng-show="sekcja.shown"
+                ng-class="sekcja.getZatwierdzenie()"
+                ng-click="sekcja.zatwierdz()"
+                ng-bind="sekcja.stanZatwierdz()"
+                data-html="true"
+                data-toggle="tooltip"
+                data-placement="right"
+                title="<B>Planowanie zadania.</B>"
+        > Zastosuj</button>
+    </div>
+
+</div>
+
+<div class="oswietlenie content" ng-show="tab.open=='oswietlenie'">
 
     <div class="sekcja" ng-controller="kontrolSekcji as sekcja">
         <button class="desc"
                 ng-click="sekcja.hide()">{{sekcja.id}}</button>
 
         <div class="data" ng-show="sekcja.shown">
-            <br>
             <label ng-show="sekcja.shown">Start
                 <input type="text" maxlength="2" size="2" ng-model="sekcja.h" ng-change="sekcja.validuj()"></input>:
                 <input type="text" maxlength="2" size="2" ng-model="sekcja.m" ng-change="sekcja.validuj()"></input>
@@ -29,6 +103,7 @@
 
             <span ng-show="sekcja.shown">Dzien
                 <input type="checkbox"
+                       class="daycheckbox"
                        ng-repeat="day in sekcja.days track by $index"
                        ng-model="day"
                 ></input>
@@ -50,7 +125,52 @@
     </div>
 
 </div>
+
+<div class="fontanna content" ng-show="tab.open=='fontanna'">
+
+    <div class="sekcja" ng-controller="kontrolSekcji as sekcja">
+        <button class="desc"
+                ng-click="sekcja.hide()">{{sekcja.id}}</button>
+
+        <div class="data" ng-show="sekcja.shown">
+            <label ng-show="sekcja.shown">Start
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.h" ng-change="sekcja.validuj()"></input>:
+                <input type="text" maxlength="2" size="2" ng-model="sekcja.m" ng-change="sekcja.validuj()"></input>
+            </label>
+
+            <label ng-show="sekcja.shown">
+                Czas
+                <input type="text" maxlength="3" size="2" ng-model="sekcja.rt">
+                </input>
+            </label>
+
+            <span ng-show="sekcja.shown">Dzien
+                <input type="checkbox"
+                       class="daycheckbox"
+                       ng-repeat="day in sekcja.days track by $index"
+                       ng-model="day"
+                ></input>
+
+            </span>
+        </div>
+        <button class="guzik"
+                ng-class="sekcja.getStan()"
+                ng-bind="sekcja.stanNazwa()"
+                ng-click="sekcja.zmianaStanu()"
+        > Zmiana Stanu </button>
+
+        <button class="guzik"
+                ng-show="sekcja.shown"
+                ng-class="sekcja.getZatwierdzenie()"
+                ng-click="sekcja.zatwierdz()"
+                ng-bind="sekcja.stanZatwierdz()"
+        > Zastosuj</button>
+    </div>
+
+</div>
+
 </body>
 <script src="assets/index.js"></script>
+<script src="assets/bootstrap.bundle.min.js"></script>
 </html>
 

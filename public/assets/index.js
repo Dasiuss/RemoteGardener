@@ -1,3 +1,7 @@
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 module = angular.module("ogrodnik",[])
 
 module.controller("kontrolSekcji", function() {
@@ -9,7 +13,7 @@ module.controller("kontrolSekcji", function() {
     sekcja.m = 30;
     sekcja.rt = 15;
     sekcja.days = [0,0,0,0,0,0,0];
-    sekcja.id="Przedogrodek";
+    sekcja.id="Przedogródek";
 
     sekcja.hide = () =>{
         sekcja.shown=!sekcja.shown;
@@ -59,4 +63,21 @@ module.controller("kontrolSekcji", function() {
 });
 
 
+module.controller("tabChangeController", function() {
+    var tab = this;
+
+    tab.open = "nawadnianie";
+
+    tab.showOnly = (tabName) =>{
+        tab.open=tabName
+        };
+
+
+    tab.getTabActive = (tabName) =>{
+        if(tab.open==tabName){
+            return "active";
+        };
+}
+
+});
 

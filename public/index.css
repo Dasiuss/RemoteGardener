@@ -14,9 +14,11 @@ body {
 }
 
 .desc{
-  border: 2px black solid;
+    border: 2px black solid;
     width: 80%;
-  margin: 0 auto;
+    background-color: #1B5746;
+    margin: -10 -15;
+    font-weight:bold;
 }
 
 label{
@@ -45,4 +47,8 @@ input{
 
 .green{
     background-color: green;
+}
+
+.blue{
+    background-color: blue;
 }

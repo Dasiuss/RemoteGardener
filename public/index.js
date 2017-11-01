@@ -1,17 +1,24 @@
 module = angular.module("ogrodnik",[])
 
 module.controller("kontrolSekcji", function() {
-  var sekcja = this;
-  sekcja.stan = false;
-  sekcja.h = 6;
-  sekcja.m = 30;
-  sekcja.rt = 15;
-  sekcja.days = [0,0,0,0,0,0,0];
-  sekcja.id="przedogrodek";
+    var sekcja = this;
+    sekcja.stan = false;
+    sekcja.zatwierdzony = false;
+    sekcja.shown = true;
+    sekcja.h = 6;
+    sekcja.m = 30;
+    sekcja.rt = 15;
+    sekcja.days = [0,0,0,0,0,0,0];
+    sekcja.id="Przedogrodek";
 
-  sekcja.zmianaStanu = () =>{
-  sekcja.stan=!sekcja.stan;
-  };
+    sekcja.hide = () =>{
+        sekcja.shown=!sekcja.shown;
+        console.log(sekcja.shown)
+        };
+
+    sekcja.zmianaStanu = () =>{
+    sekcja.stan=!sekcja.stan;
+    };
 
     sekcja.getStan = () =>{
         if(!sekcja.stan){
@@ -21,19 +28,34 @@ module.controller("kontrolSekcji", function() {
     }
 
     sekcja.zatwierdz = () =>{
+        sekcja.zatwierdzony=!sekcja.zatwierdzony;
         console.log(sekcja)
     }
 
     sekcja.stanNazwa = () =>{
         if(sekcja.stan){
-        return "WYLĄCZ RĘCZNIE"
+        return "ZAŁĄCZONO. KLIKNIJ ABY WYŁĄCZYĆ"
         }
-        return "ZAŁĄCZ RĘCZNIE"
+        return "WYŁĄCZONO. KLIKNIJ ABY ZAŁĄCZYĆ"
     }
 
-  sekcja.validuj = () => {
-    if(sekcja.h>23){sekcja.h=23}
-  }
+    sekcja.validuj = () => {
+        if(sekcja.h>23){sekcja.h=23}
+    }
+
+    sekcja.stanZatwierdz = () =>{
+        if(!sekcja.zatwierdzony){
+        return "ZATWIERDŹ - AKTYWUJ PROGRAM"
+        }
+        return "PROGRAM AKTYWNY. DEZAKTYWACJA"
+    }
+
+    sekcja.getZatwierdzenie = () =>{
+        if(!sekcja.zatwierdzony){
+            return "blue";
+        };
+        return "green";
+    }
 });
 
 

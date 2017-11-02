@@ -6,9 +6,6 @@ target
 /.project
 /.settings
 /RUNNING_PID
-
-*.class
-
+/out
 *.iml
-
-db/
+/db

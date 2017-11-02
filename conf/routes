@@ -6,6 +6,10 @@
 GET     /                           controllers.Assets.at(path="/public", file="index.html")
 
 GET     /irrigation/sections        controllers.IrrigationController.getSections()
+GET     /irrigation/sections/:id    controllers.IrrigationController.getSection(id:Long)
+PUT     /irrigation/sections/:id    controllers.IrrigationController.editSection(id:Long)
+POST    /irrigation/sections        controllers.IrrigationController.createSection()
+DELETE  /irrigation/sections/:id    controllers.IrrigationController.deleteSection(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public/assets", file: Asset)
